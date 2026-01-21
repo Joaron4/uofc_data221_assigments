@@ -1,6 +1,7 @@
-# UofC DATA 221 Assignments
+# University of Calgary 
+## DATA 221 Assignments
 ____________________________
-### Joaquín Rondón Rubiano
+### Joaquín Rondón Rubiano 
 ____________________________
 
 ## Repository Description

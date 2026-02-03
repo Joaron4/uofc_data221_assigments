@@ -18,6 +18,7 @@ def eliminate_punctuation(word):
 
 fhand = open('data/input/sample-file.txt', 'r')
 lines = fhand.read().split('\n')
+fhand.close()
 normalized_lines = [eliminate_punctuation(line).strip().lower() for line in lines]
 
 

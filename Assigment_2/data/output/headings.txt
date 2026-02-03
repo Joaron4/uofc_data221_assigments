@@ -1,0 +1,5 @@
+1. Foundations
+2. Etymology
+3. Data science and data analysis
+4. Cloud computing for data science
+5. Ethical consideration in data science

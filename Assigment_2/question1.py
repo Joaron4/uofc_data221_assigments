@@ -33,6 +33,7 @@ def contains_alphabetic(word):
 
 fhand = open('data/input/sample-file.txt', 'r')
 raw_text = fhand.read()
+fhand.close()
 tokens = raw_text.split()
 tokens_lower = [eliminate_punctuation(word).strip().lower() for word in tokens]
 alphabetic_tokens = [word for word in tokens_lower if contains_alphabetic(word)]

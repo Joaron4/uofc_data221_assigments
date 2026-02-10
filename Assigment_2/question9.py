@@ -22,8 +22,8 @@ parsed_html_document = BS(wikipedia_response,"html5lib")
 first_table = parsed_html_document.find("div", id="mw-content-text").find("table")
 rows = first_table.find_all("tr")
 
-parsed_tables_contents = parsed_html_document.find("div", id="mw-content-text").find_all("table")
 if len(rows) < 4:
+    parsed_tables_contents = parsed_html_document.find("div", id="mw-content-text").find_all("table")
     for i in parsed_tables_contents:     
         rows = i.find_all("tr")
         if len(rows) >= 4:
@@ -31,5 +31,23 @@ if len(rows) < 4:
             break
         
 headers = [i.text for i in first_table.find_all("th")]
-print(headers)
-print(pd.read_html(first_table))
+if headers == []:
+    num_cols = max([len(r.find_all(["td", "th"])) for r in first_table.find_all("tr")])
+    headers = [f"col{i+1}" for i in range(num_cols)]
+body_rows = first_table.find_all("tr")
+
+
+table_data = []
+n_cols = len(headers)
+
+for tr in body_rows:
+    cells = tr.find_all(["td", "th"])
+    values = [c.text for c in cells]
+
+    values = (values + [""] * n_cols)[:n_cols]
+    table_data.append(values)
+
+wikipedia_dataframe = pd.DataFrame(table_data, columns=headers)
+wikipedia_dataframe.to_csv("data/output/wiki_table.csv", index=False)
+print(wikipedia_dataframe)
+

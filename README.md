@@ -9,6 +9,7 @@ ____________________________
 This is a folder for the assignments of DATA 221.
 
 Assignment 1 is in the Folder Assigment_1.
+<br>
 Assignment 2 is in the Folder Assigment_2.
 
 

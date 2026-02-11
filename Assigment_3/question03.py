@@ -12,7 +12,19 @@ After performing the split, write comments in your code explaining:
 """
 import pandas as pd
 from sklearn.model_selection import train_test_split
-kidney_data = pd.read_csv('data/input/kidney disease.csv')
-X = kidney_data.drop(columns=['CKD'])
-y = kidney_data['CKD']  
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+kidney_data = pd.read_csv('data/input/kidney_disease.csv')
+kidney_data.classification = kidney_data.classification.str.replace('ckd\t', 'ckd')
+kidney_data['label_y'] = kidney_data.classification.apply(lambda x: 1 if x == 'ckd' else 0)
+feature_matrix = kidney_data[kidney_data.columns.difference(['label_y','classification'])]
+target_vector = kidney_data['label_y']
+features_train, features_test, labels_train, labels_test = train_test_split(
+    feature_matrix, target_vector, test_size=0.3, random_state=42
+)
+
+# Response
+"""
+1. We should split the data into a training set and a testing set, to compare how good is our model and generalizing. If
+we didn't divide it our model would be trained and tested on the same data, which would lead to overfitting. 
+2. It's to evaluate the performance of our model on unseen data, and check how well it generalizes unseen information.
+"""

@@ -1,0 +1,2 @@
+# Ignore Jupyter notebook checkpoint/cache directories
+.ipynb_checkpoints/
